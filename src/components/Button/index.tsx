@@ -5,9 +5,9 @@ const Button = ({
     disabled = false,
     onClick
 }: {
-    type: any
+    type?: any
     text: string
-    color: string
+    color?: string
     disabled: boolean
     onClick: any
 }) => {

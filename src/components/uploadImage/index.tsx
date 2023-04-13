@@ -7,10 +7,10 @@ const UploadImage = ({
     imagePreviewClassName = '',
     whenSetReference
 }: {
-    className: string | undefined
+    className?: string
     setImage: any
-    imagePreview: null | string
-    imagePreviewClassName: string
+    imagePreview?: string
+    imagePreviewClassName?: string
     whenSetReference: any
 }) => {
     const inputReference = useRef<HTMLInputElement>(null)
@@ -47,7 +47,6 @@ const UploadImage = ({
             className={`uploadImageContainer ${className}`}
             onClick={openFileSelector}
         >
-            <button>abrir seletor de arquivos</button>
             {imagePreview && (
                 <div className="imagePreviewContainer">
                     <img 
