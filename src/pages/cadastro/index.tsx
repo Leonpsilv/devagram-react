@@ -11,6 +11,7 @@ import avatarImg from '../../../public/images/avatar.svg';
 import PublicInput from '@/components/publicInput';
 import Button from '@/components/button';
 import UploadImage from "@/components/uploadImage";
+import {nameValidate, emailValidate, passwordValidate, confirmPasswordValidate} from '../../utils/validators';
 
 
 export default function Register() {
@@ -19,6 +20,16 @@ export default function Register() {
     const [image, setImage] = useState(null)
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+
+    function formValidate(){
+        if(nameValidate(name) ||
+        emailValidate(email) ||
+        passwordValidate(password) ||
+        confirmPasswordValidate(password, passwordConfirm)
+        ) return true
+
+        return false
+    }
 
     return (
       <>
@@ -45,7 +56,8 @@ export default function Register() {
                         image={userImg}
                         typeInput={'text'}
                         placeHolder={'Digite seu nome'}
-                        validationMsg={""}
+                        validationMsg={"Nome precisa ter pelo menos 2 caracteres"}
+                        showValidationMsg={nameValidate(name)}
                         value={name}
                         whenValueChanges={(e: any) => {setName(e.target?.value)}}
                     />
@@ -54,7 +66,8 @@ export default function Register() {
                         image={envelopeImg}
                         typeInput={'email'}
                         placeHolder={'Digite seu email'}
-                        validationMsg={""}
+                        validationMsg={"Email inválido"}
+                        showValidationMsg={emailValidate(email)}
                         value={email}
                         whenValueChanges={(e: any) => {setEmail(e.target?.value)}}
                     />
@@ -63,7 +76,8 @@ export default function Register() {
                         image={keyImg}
                         typeInput={'password'}
                         placeHolder={'Digite sua senha'}
-                        validationMsg={""}
+                        validationMsg={"A senha precisa conter ao menos 8 caracteres, sendo pelo menos um maiúsculo e um númerico"}
+                        showValidationMsg={passwordValidate(password)}
                         value={password}
                         whenValueChanges={(e: any) => {setPassword(e.target?.value)}}
                     />
@@ -73,11 +87,12 @@ export default function Register() {
                         typeInput={'password'}
                         placeHolder={'Confirme sua senha'}
                         validationMsg={"As senhas estão diferentes!"}
+                        showValidationMsg={confirmPasswordValidate(password, passwordConfirm)}
                         value={passwordConfirm}
                         whenValueChanges={(e: any) => {setPasswordConfirm(e.target?.value)}}
                     />
 
-                    <Button type={'submit'} text={"Cadastrar"} disabled={false} onClick={undefined} />
+                    <Button type={'submit'} text={"Cadastrar"} disabled={formValidate()} onClick={undefined} />
                 </form>
 
                 <div className="publicPageBaseboard">

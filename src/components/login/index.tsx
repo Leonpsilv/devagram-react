@@ -1,16 +1,24 @@
-import PublicInput from "../publicInput";
-import envelopeImg from '../../../public/images/envelope.svg'
-import keyImg from '../../../public/images/key.svg'
-import logoImg from '../../../public/images/logo.svg'
 import Image from "next/image";
-import Button from "../button";
 import Link from "next/link";
 import { useState } from "react";
 
+import keyImg from '../../../public/images/key.svg'
+import envelopeImg from '../../../public/images/envelope.svg'
+import logoImg from '../../../public/images/logo.svg'
+
+import PublicInput from "../publicInput";
+import Button from "../button";
+import {emailValidate} from '../../utils/validators';
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    function formValidate(){
+        if(emailValidate(email)) return true
+
+        return false
+    }
 
     return (
       <>
@@ -30,7 +38,8 @@ export default function Login() {
                         image={envelopeImg}
                         typeInput={'email'}
                         placeHolder={'Digite seu email'}
-                        validationMsg={""}
+                        validationMsg={"O email informado é inválido"}
+                        showValidationMsg={emailValidate(email)}
                         value={email}
                         whenValueChanges={(e: any) => {setEmail(e.target?.value)}}
                     />
@@ -39,12 +48,11 @@ export default function Login() {
                         image={keyImg}
                         typeInput={'password'}
                         placeHolder={'Digite sua senha'}
-                        validationMsg={""}
                         value={password}
                         whenValueChanges={(e: any) => {setPassword(e.target?.value)}}
                     />
 
-                    <Button type={'submit'} text={"Login"} disabled={false} onClick={undefined} />
+                    <Button type={'submit'} text={"Login"} disabled={formValidate()} onClick={undefined} />
                 </form>
 
                 <div className="publicPageBaseboard">
