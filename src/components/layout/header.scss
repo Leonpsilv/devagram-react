@@ -43,6 +43,37 @@
         }
     }
 
+    .searchResultContainer{
+        position: absolute;
+        background-color: $white;
+        width: 100%;
+        z-index: 10;
+
+        .searchResult{
+            display: flex;
+            padding: 10px 16px;
+
+            &:hover{
+                background-color: $gray;
+                cursor: pointer;
+            }
+
+            .avatar{
+                height: 32px;
+                width: 32px;
+                margin-right: 8px;
+            }
+
+            .userInfos{
+                > * {
+                    display: block;
+                    font-size: 12px;
+                    color: $gray4;
+                }
+            }
+        }
+    }
+
     @media screen and (min-width: $desktopBreakPoint) {
         background-color: $white;
         border: none;
@@ -59,7 +90,7 @@
             }
 
             .searchBar{
-                flex: 0.6;
+                flex: 0.5;
                 margin: 0px 10px 0px 30px;
 
                 input{
@@ -74,6 +105,14 @@
                     }
                 }
             }
+        }
+
+        .searchResultContainer{
+            width: 20%;
+            margin: 0 auto;
+            left: 7%;
+            right: 0;
+            box-shadow: 0 4px 5px $gray1;
         }
     }
 }

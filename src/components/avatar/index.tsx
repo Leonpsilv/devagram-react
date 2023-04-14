@@ -1,10 +1,10 @@
 import avatarImg from '../../../public/images/avatar.svg'
 
 const Avatar = ({
-    src
+    src = ''
 } :
 {
-    src: string| undefined
+    src?: string
 }) => {
     const getAvatar = () => {
         if(src && src !== undefined) {

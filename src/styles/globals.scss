@@ -35,6 +35,10 @@ input{
   }
 }
 
+strong{
+  font-family: $fontBold;
+}
+
 .validationMsg{
   display: block;
   color: $red;
