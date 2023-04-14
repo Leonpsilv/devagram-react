@@ -12,7 +12,9 @@ import PublicInput from '@/components/publicInput';
 import Button from '@/components/button';
 import UploadImage from "@/components/uploadImage";
 import {nameValidate, emailValidate, passwordValidate, confirmPasswordValidate} from '../../utils/validators';
+import UserService from "../../services/userService";
 
+const userService = new UserService
 
 export default function Register() {
     const [name, setName] = useState('')
@@ -20,6 +22,7 @@ export default function Register() {
     const [image, setImage] = useState(null)
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [submitting, setSubmitting] = useState(false)
 
     function formValidate(){
         if(nameValidate(name) ||
@@ -29,6 +32,32 @@ export default function Register() {
         ) return true
 
         return false
+    }
+
+    const whenSubmit = async (e: any) => {
+        e.preventDefault()
+
+        if(!name || !email || !password || !passwordConfirm) return  
+        if(formValidate()) return
+        setSubmitting(true)
+
+        try {
+            const payload = new FormData()
+            payload.append('name', name)
+            payload.append('email', email)
+            payload.append('password', password)
+            
+            if(image && image['file']) {
+                payload.append('file', image['file'])
+            }
+
+            await userService.register(payload)
+            alert('sucesso!')
+
+        } catch (e: any) {
+            alert('Erro ao cadastrar usuário. ' + e?.response?.data?.error)
+        }
+        setSubmitting(false)
     }
 
     return (
@@ -44,7 +73,7 @@ export default function Register() {
             </div>
 
             <div className={`publicPageContent`}>
-                <form>
+                <form onSubmit={whenSubmit}>
                     <UploadImage
                         setImage={setImage}
                         whenSetReference={undefined}
@@ -92,7 +121,13 @@ export default function Register() {
                         whenValueChanges={(e: any) => {setPasswordConfirm(e.target?.value)}}
                     />
 
-                    <Button type={'submit'} text={"Cadastrar"} disabled={formValidate()} onClick={undefined} />
+                    <Button
+                        type={'submit'}
+                        text={"Cadastrar"}
+                        disabled={formValidate() || submitting}
+                        onClick={undefined}
+                    />
+
                 </form>
 
                 <div className="publicPageBaseboard">

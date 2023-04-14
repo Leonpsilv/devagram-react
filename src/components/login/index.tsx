@@ -9,15 +9,41 @@ import logoImg from '../../../public/images/logo.svg'
 import PublicInput from "../publicInput";
 import Button from "../button";
 import {emailValidate} from '../../utils/validators';
+import UserService from "../../services/userService";
+
+const userService = new UserService
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [submitting, setSubmitting] = useState(false)
 
     function formValidate(){
         if(emailValidate(email)) return true
 
         return false
+    }
+
+    const whenSubmit = async (e: any) => {
+        e.preventDefault()
+
+        if(!email || !password) return  
+        if(formValidate()) return
+        setSubmitting(true)
+
+        try {
+            const payload = {
+                login: email,
+                password
+            }
+
+            await userService.login(payload)
+            alert('sucesso!')
+
+        } catch (e: any) {
+            alert('Erro ao logar usuário. ' + e?.response?.data?.error)
+        }
+        setSubmitting(false)
     }
 
     return (
@@ -33,7 +59,7 @@ export default function Login() {
             </div>
 
             <div className={`publicPageContent`}>
-                <form>
+                <form onSubmit={whenSubmit}>
                     <PublicInput
                         image={envelopeImg}
                         typeInput={'email'}
@@ -52,7 +78,7 @@ export default function Login() {
                         whenValueChanges={(e: any) => {setPassword(e.target?.value)}}
                     />
 
-                    <Button type={'submit'} text={"Login"} disabled={formValidate()} onClick={undefined} />
+                    <Button type={'submit'} text={"Login"} disabled={formValidate() || submitting} onClick={undefined} />
                 </form>
 
                 <div className="publicPageBaseboard">
