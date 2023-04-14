@@ -12,9 +12,10 @@ import PublicInput from '@/components/publicInput';
 import Button from '@/components/button';
 import UploadImage from "@/components/uploadImage";
 import {nameValidate, emailValidate, passwordValidate, confirmPasswordValidate} from '../../utils/validators';
-import UserService from "../../services/userService";
+import UserService from "../../services/UserService";
+import { useRouter } from "next/router";
 
-const userService = new UserService
+const userService = new UserService()
 
 export default function Register() {
     const [name, setName] = useState('')
@@ -24,11 +25,14 @@ export default function Register() {
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [submitting, setSubmitting] = useState(false)
 
+    const router = useRouter()
+
     function formValidate(){
         if(nameValidate(name) ||
         emailValidate(email) ||
         passwordValidate(password) ||
-        confirmPasswordValidate(password, passwordConfirm)
+        confirmPasswordValidate(password, passwordConfirm) ||
+        !name || !email || !password || !passwordConfirm
         ) return true
 
         return false
@@ -52,7 +56,11 @@ export default function Register() {
             }
 
             await userService.register(payload)
-            alert('sucesso!')
+            await userService.login({
+                login: email,
+                password
+            })
+            router.push('/')
 
         } catch (e: any) {
             alert('Erro ao cadastrar usuário. ' + e?.response?.data?.error)

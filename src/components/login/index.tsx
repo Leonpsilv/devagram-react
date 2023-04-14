@@ -9,17 +9,17 @@ import logoImg from '../../../public/images/logo.svg'
 import PublicInput from "../publicInput";
 import Button from "../button";
 import {emailValidate} from '../../utils/validators';
-import UserService from "../../services/userService";
+import UserService from "../../services/UserService";
 
-const userService = new UserService
+const userService = new UserService()
 
-export default function Login() {
+export default function Login({ afterAuthenticate } : {afterAuthenticate: any}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submitting, setSubmitting] = useState(false)
 
     function formValidate(){
-        if(emailValidate(email)) return true
+        if(emailValidate(email) || !email || !password) return true
 
         return false
     }
@@ -38,7 +38,9 @@ export default function Login() {
             }
 
             await userService.login(payload)
-            alert('sucesso!')
+            if(afterAuthenticate){
+                afterAuthenticate()
+            }
 
         } catch (e: any) {
             alert('Erro ao logar usuário. ' + e?.response?.data?.error)
