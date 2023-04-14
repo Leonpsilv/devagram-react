@@ -63,7 +63,23 @@ input{
   }
 }
 
+.navBar{
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    margin: 10px 0;
+    li{
+      list-style: none;
+      cursor: pointer;
+    }
+  }
+}
+
 @import '../components/Button/button.scss';
 @import '../components/publicInput/publicInput.scss';
 @import './publicPage.scss';
 @import '../pages/cadastro/cadastro.scss';
+@import '../components/layout/header.scss';
+@import '../components/layout/footer.scss';

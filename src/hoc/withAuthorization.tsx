@@ -1,3 +1,5 @@
+import Footer from "@/components/layout/Footer"
+import Header from "@/components/layout/Header"
 import UserService from "@/services/UserService"
 import { useRouter } from "next/router"
 
@@ -10,7 +12,13 @@ const withAuthorization = (Component : React.FC) => {
                 router.replace('/')
                 return null
             }
-            return <Component {...props} />
+            return (
+                <>
+                  <Header />  
+                  <Component {...props} />
+                  <Footer />
+                </>
+            ) 
         }
 
         return null
