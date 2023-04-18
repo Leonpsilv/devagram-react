@@ -24,4 +24,8 @@ export default class UserService extends HTTPService {
     isAuthenticate(){
         return localStorage.getItem('token') !== null
     }
+
+    async search(searchType: string){
+        return this.get(`/search?filter=${searchType}`)
+    }
 }

@@ -16,7 +16,7 @@ const SearchResult = ({
     return (
         <div className="searchResult">
             <Avatar src={avatar}/>
-            <div className="userInfos" onClick={onClick(id)}>
+            <div className="userInfos" onClick={() => onClick(id)}>
                 <strong>{name}</strong>
                 <span>{email}</span>
             </div>

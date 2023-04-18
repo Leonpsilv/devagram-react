@@ -4,41 +4,35 @@ import magnifierImg from '../../../public/images/magnifier.svg'
 import Navigation from './Navigation'
 import { useState } from 'react'
 import SearchResult from './SearchResult'
+import UserService from '@/services/UserService'
+import { useRouter } from 'next/router'
+
+const userService = new UserService()
 
 const Header = () => {
-    const [searchResult, setSearchResult] = useState<any[]>([]);
+    const [searchResult, setSearchResult] = useState<any[]>([])
     const [search, setSearch] = useState('')
+    const router = useRouter()
 
-    const whenSearch = (search: string) => {
-        setSearch(search)
-        // setSearchResult([])
-
-        setSearchResult([
-            {
-                avatar: '',
-                name: 'leozin',
-                email: 'leozin@email.com',
-                id: 123124
-            },
-            {
-                avatar: '',
-                name: 'enzin',
-                email: 'enzin@email.com',
-                id: 1235534
-            },
-            {
-                avatar: '',
-                name: 'musashi',
-                email: 'musashi@email.com',
-                id: 24654124
-            },
-        ])
+    const whenSearch = async (search: string) => {
+        try {
+            setSearch(search)
+            setSearchResult([])
+            if(search && search.length > 2){
+                const {data} = await userService.search(search)
+                setSearchResult(data)
+                return
+            }
+            return
+        } catch (error: any) {
+            alert('erro ao pesquisar usuário. ' + error?.response?.data?.error)
+        }
     }
 
     const whenClickSearchResult = (id: string) => {
-        console.log('clicou resultado pesquisa', {id})
-
-        if(search.length < 3) return
+        setSearch('')
+        setSearchResult([])
+        router.push(`/perfil/${id}`)
     }
 
     return (
