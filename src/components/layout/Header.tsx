@@ -35,11 +35,15 @@ const Header = () => {
         router.push(`/perfil/${id}`)
     }
 
+    const homeRedirect = () => {
+        router.push('/')
+    }
+
     return (
         <header className='homeHeader'>
             <div className='principalContentHeader'>
                 <div className='principalLogoHeader'>
-                    <Image src={horizontalLogoImg} fill alt={'logo horizontal'} />
+                    <Image onClick={() => homeRedirect()} src={horizontalLogoImg} fill alt={'logo horizontal'} />
                 </div>
 
                 <div className='searchBar'>
