@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 const userService = new UserService()
 
-const Header = () => {
+const Header = ({loggedUser} : {loggedUser? : object}) => {
     const [searchResult, setSearchResult] = useState<any[]>([])
     const [search, setSearch] = useState('')
     const router = useRouter()
@@ -43,7 +43,13 @@ const Header = () => {
         <header className='homeHeader'>
             <div className='principalContentHeader'>
                 <div className='principalLogoHeader'>
-                    <Image onClick={() => homeRedirect()} src={horizontalLogoImg} fill alt={'logo horizontal'} />
+                    <Image
+                        onClick={() => homeRedirect()}
+                        src={horizontalLogoImg}
+                        fill
+                        priority
+                        alt={'logo horizontal'}
+                    />
                 </div>
 
                 <div className='searchBar'>

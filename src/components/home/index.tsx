@@ -1,8 +1,10 @@
 import withAuthorization from "@/hoc/withAuthorization"
+import Feed from "../feed"
 
-const Home = () => {
+
+const Home = ({loggedUser}: { loggedUser?:  object}) => {
     return (
-        <h1>Home</h1>
+        <Feed loggedUser={loggedUser}/>
     )
 }
 

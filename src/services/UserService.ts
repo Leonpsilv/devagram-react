@@ -21,11 +21,20 @@ export default class UserService extends HTTPService {
         return this.post('/register', data)
     }
 
-    isAuthenticate(){
+    isAuthenticate() {
         return localStorage.getItem('token') !== null
     }
 
     async search(searchType: string){
         return this.get(`/search?filter=${searchType}`)
+    }
+
+    getLoggedUserInfo() {
+        return {
+            id: localStorage.getItem('userId'),
+            name: localStorage.getItem('name'),
+            email: localStorage.getItem('email'),
+            avatar: localStorage.getItem('avatar')
+        }
     }
 }

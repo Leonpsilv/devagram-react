@@ -1,0 +1,113 @@
+.feedContainer{
+    padding-bottom: 55px;
+    background-color: $white;
+    margin-top: 16px;
+
+    .post{
+        a {
+            text-decoration: none;
+            color: $gray4;
+        }
+        
+        .avatar{
+            height: 32px;
+            width: 32px;
+            margin-right: 8px;
+        }
+
+        .postHeader{
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            margin-bottom: 8px;
+
+
+            strong {
+                font-size: 12px;
+            }
+        }
+
+        .postImage{
+            img {
+                width: 100%;
+                height: auto;
+                max-height: 360px;
+                object-fit: cover;
+            }
+        }
+
+        .postFooter{
+            padding: 5px 16px;
+            
+            strong.userName{
+                font-size: 12px;
+                float: left;
+                margin-right: 5px;
+                color: $gray4;
+            }
+
+            p.description{
+                font-size: 12px;
+                margin: 0 0 2px;
+                color: $gray4;
+            }
+
+            span.showMore{
+                font-size: 12px;
+                color: $primaryColor2;
+                margin-left: 6px;
+                cursor: pointer;
+            }
+
+            .actionsPostFooter{
+                display: flex;
+                align-items: center;
+                margin-bottom: 6px;
+
+                > img {
+                    margin-right: 6px !important;
+                    cursor: pointer
+                }
+
+                .quantityLikes{
+                    font-family: $fontLight;
+                    font-size: 10px;
+                    color: $gray4;
+
+                    strong{
+                        font-size: inherit;
+                        color: $gray4;
+                    }
+                }
+            }
+
+            .commentsPostFooter{
+                margin-left: 12px;
+            }
+        }
+
+        .writeComment{
+            display: flex;
+            margin-top: 16px;
+            padding: 0 12px;
+            align-items: center;
+            margin-bottom: 16px;
+
+            textarea{
+                resize: none;
+                border: none;
+                outline: none;
+                width: 100%;
+                height: 32px;
+                margin: 0 8px;
+                font-size: 12px;
+                color: $gray2;
+            }
+        }
+
+    }
+
+    @media screen and (min-width: $desktopBreakPoint) {
+        padding-top: 8px;
+    }
+}

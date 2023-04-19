@@ -1,14 +1,15 @@
 import Navigation from "./Navigation"
 
-
 const Footer = ({
+    loggedUser,
     className
 }: {
-    className?: string
+    className?: string,
+    loggedUser?: object
 }) => {
 
     return (
-        <footer className='footer mobile'>
+        <footer className={`footer mobile ${className}`}>
             <Navigation />
         </footer>
     )
