@@ -81,9 +81,24 @@ strong{
   }
 }
 
+body{
+  @media screen and (min-width: $desktopBreakPoint) {
+    background-color: $gray5;
+    background-image: url('../../public/images/backgroundDesktop.svg');
+  }
+}
+
+.desktopLarge{
+  @media screen and (min-width: $desktopBreakPoint){
+    width: 40%;
+    margin: 0 auto;
+  }
+}
+
 @import '../components/Button/button.scss';
 @import '../components/publicInput/publicInput.scss';
 @import './publicPage.scss';
 @import '../pages/cadastro/cadastro.scss';
 @import '../components/layout/header.scss';
 @import '../components/layout/footer.scss';
+@import '../components/feed/feed.scss';
