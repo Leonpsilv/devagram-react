@@ -13,6 +13,7 @@ const descriptionLimit = 100
 
 const Post = ({
     user,
+    userId,
     image,
     likes,
     description,
@@ -52,7 +53,7 @@ const Post = ({
 
     return (
         <div className="post">
-            <Link href={`/perfil/${user.id}`}>
+            <Link href={`/perfil/${userId}`}>
                 <section className="postHeader">
                     <Avatar src={user.avatar} />
                     <strong>{user.name}</strong>

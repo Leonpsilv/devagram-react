@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios, { Axios, InternalAxiosRequestConfig } from 'axios';
 
 export default class HTTPService {
-    axios: any;
+    axios: Axios;
     constructor (){
         this.axios = axios.create({
             baseURL: process.env.NEXT_PUBLIC_API_URL + '/api'
         })
 
-        this.axios.interceptors.request.use((config: any) => {
+        this.axios.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
             const token = localStorage.getItem('token')
             if(token) {
                 config.headers.Authorization = 'Bearer ' + token
