@@ -108,5 +108,19 @@
 
     @media screen and (min-width: $desktopBreakPoint) {
         padding-top: 8px;
+
+        .post{
+            .writeComment{
+                margin-top: 10px;
+                .btnPost{
+                    background-color: transparent;
+                    color: $primaryColor;
+                    border: none;
+                    outline: none;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

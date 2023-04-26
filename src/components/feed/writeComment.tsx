@@ -11,6 +11,12 @@ const WriteComment = ({loggedUser}: {loggedUser?: any}) => {
                 placeholder="Adicione seu comentário..."
             >
             </textarea>
+            <button
+                type="button"
+                className="btnPost desktop"
+            >
+                Publicar
+            </button>
         </div>
     )
 }
