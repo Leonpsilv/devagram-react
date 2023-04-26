@@ -11,9 +11,6 @@ export default function Index() {
   }, [])
 
   if(authenticate) return <Home />
-  return (
-    <>
-      <Login afterAuthenticate={() => setAuthenticate(true)}/>
-    </>
-  )
+  
+  return <Login afterAuthenticate={() => setAuthenticate(true)}/>
 }
