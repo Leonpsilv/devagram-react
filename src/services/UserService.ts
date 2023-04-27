@@ -9,7 +9,6 @@ export default class UserService extends HTTPService {
         localStorage.setItem('token', data.token)
         
         const user = await this.get('/user')
-        console.log(user.data)
         localStorage.setItem('userId', user.data._id)
         
         if(user.data.avatar){
