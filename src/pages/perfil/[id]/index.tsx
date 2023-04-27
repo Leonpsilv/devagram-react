@@ -1,9 +1,8 @@
-import AlternativeHeader from "@/components/alternativeHeader"
 import Feed from "@/components/feed"
 import withAuthorization from "@/hoc/withAuthorization"
-import leftArrowImg from '../../../../public/images/leftArrow.svg'
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import ProfileHeader from "@/components/profileHeader"
 
 const Profile = ({loggedUser}: any) => {
    const [user, setUser] = useState({})
@@ -11,13 +10,15 @@ const Profile = ({loggedUser}: any) => {
 
    useEffect(() => {
       async function request() {
-         
+         setUser({name: 'Leonardo Pinheiro Guedes'})
       }
       request()
-   }, [])
+   }, [router.query.id])
+
    return (
     <div className="profilePage">
-      <AlternativeHeader leftIcon={leftArrowImg}/>
+      <ProfileHeader loggedUser={loggedUser} profileUser={user}/>
+      
       <Feed loggedUser={loggedUser}/>
     </div>
    ) 

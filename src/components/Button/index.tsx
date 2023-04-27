@@ -6,10 +6,10 @@ const Button = ({
     onClick
 }: {
     type?: any
-    text: string
+    text?: string
     color?: string
-    disabled: boolean
-    onClick: any
+    disabled?: boolean
+    onClick?: any
 }) => {
     return (
         <button

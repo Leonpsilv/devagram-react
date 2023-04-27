@@ -24,8 +24,8 @@ const alternativeHeader = ({
                 src={leftIcon}
                 alt="icone esquerda"
                 onClick={leftOnClick}
-                width={25}
-                height={25}
+                width={15}
+                height={15}
             />
         ) : (
             leftText !== null && (
