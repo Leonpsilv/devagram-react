@@ -1,6 +1,7 @@
 .profilePage {
     .profileHeader{
         background-color: $white;
+
         .profileStatus {
             display: flex;
             align-items: center;
@@ -45,5 +46,31 @@
                 }
             }
         }
+    }
+
+    @media screen and (min-width: $desktopBreakPoint) {
+        .profileHeader{
+            .alternativeHeader{
+                > img {
+                    display: none !important;
+                }
+            }
+
+            .profileHeaderBorder{
+                margin: 0 auto;
+                border: none;
+                background-color: $gray1;
+                height: 1px;
+                width: 94%;
+            }
+
+            .profileStatus{
+                .avatar{
+                    height: 90px;
+                    width: 90px;
+                }
+            }
+        }
+
     }
 }

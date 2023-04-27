@@ -13,6 +13,7 @@ const profileHeader = ({
     return (
         <div className='profileHeader desktopLarge'>
             <AlternativeHeader leftIcon={leftArrowImg} tittle={profileUser.name}/>
+            <hr className='profileHeaderBorder'/>
 
             <div className='profileStatus'>
                 <Avatar src={profileUser.avatar} />
