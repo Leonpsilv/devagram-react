@@ -1,0 +1,56 @@
+import Image from "next/image"
+
+const alternativeHeader = ({
+    className = '',
+    leftIcon,
+    leftText,
+    leftOnClick,
+    rightIcon,
+    rightOnClick,
+    tittle
+}: {
+    className?: string,
+    leftIcon?: any,
+    leftText?: string,
+    leftOnClick?: any,
+    rightIcon?: any,
+    rightOnClick?: any,
+    tittle?: string
+}) => {
+   return (
+    <div className={`alternativeHeader ${className}`}>
+        {leftIcon ? (
+            <Image
+                src={leftIcon}
+                alt="icone esquerda"
+                onClick={leftOnClick}
+                width={25}
+                height={25}
+            />
+        ) : (
+            leftText !== null && (
+                <span
+                    className="alternativeHeaderLeftText"
+                    onClick={leftOnClick}
+                >
+                    {leftText}
+                </span>
+            )
+        )}
+
+        <h3>{tittle}</h3>
+
+        {rightIcon && (
+            <button
+                type='button'
+                className='btnAcaoDireita'
+                onClick={rightOnClick}
+            >
+                {rightIcon}
+            </button>
+        )}
+    </div>
+   )
+}
+
+export default alternativeHeader

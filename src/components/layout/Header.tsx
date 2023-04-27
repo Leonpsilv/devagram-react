@@ -14,6 +14,11 @@ const Header = ({loggedUser} : {loggedUser? : object}) => {
     const [search, setSearch] = useState('')
     const router = useRouter()
 
+    let classNameHeader = ''
+    if(window && window.location.pathname !== '/'){
+        classNameHeader = 'desktop'
+    }
+
     const whenSearch = async (search: string) => {
         try {
             setSearch(search)
@@ -40,7 +45,7 @@ const Header = ({loggedUser} : {loggedUser? : object}) => {
     }
 
     return (
-        <header className='homeHeader'>
+        <header className={`homeHeader ${classNameHeader}`}>
             <div className='principalContentHeader'>
                 <div className='principalLogoHeader'>
                     <Image
