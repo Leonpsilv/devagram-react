@@ -21,6 +21,10 @@ export default class HTTPService {
         return this.axios.post(url, data)
     }
 
+    put(url: string, data?: any){
+        return this.axios.put(url, data)
+    }
+
     get(url: string){
         return this.axios.get(url)
     }

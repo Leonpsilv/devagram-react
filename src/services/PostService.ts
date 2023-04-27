@@ -8,4 +8,12 @@ export default class PostService extends HTTPService {
         }
         return this.get(url)
     }
+
+    async commentPost(comment: {comment: string}, postId: string){
+        return this.put(`/comment?id=${postId}`, comment)
+    }
+    
+    async likeOrUnlikePost(postId: string){
+        return this.put(`/like?id=${postId}`)
+    }
 }

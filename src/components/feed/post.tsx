@@ -8,11 +8,14 @@ import likedImg from '../../../public/images/liked.svg'
 import commentImg from '../../../public/images/grayComment.svg'
 import activeCommentImg from '../../../public/images/activeComment.svg'
 import WriteComment from "./writeComment"
+import PostService from "@/services/PostService"
 
 const descriptionLimit = 100
+const postService = new PostService()
 
 const Post = ({
     user,
+    _id: postId,
     userId,
     image,
     likes,
@@ -26,6 +29,8 @@ const Post = ({
     const [moreOrLessMsg, setMoreOrLessMsg] = useState('mais')
 
     const [showCommentContainer, setShowCommentContainer] = useState(false)
+    const [postComments, setPostComments] = useState(comments)
+    const [postLikes, setPostLikes] = useState(likes)
     
     const cutDescription = description.slice(0, descriptionLimit) + '...'
     useEffect(() => {
@@ -51,6 +56,50 @@ const Post = ({
         setMoreOrLessMsg('menos')
     }
 
+    function getCommentImg () {
+        return showCommentContainer ?  activeCommentImg
+        : commentImg
+    }
+
+    async function publishComment (comment: string) {
+        try {
+            await postService.commentPost({comment}, postId)
+            setPostComments([
+                ...postComments,
+                {
+                    userId: loggedUser.id,
+                    name: loggedUser.name,
+                    avatar: loggedUser.avatar,
+                    comment
+                },
+            ])
+            return true
+        } catch (e: any) {
+            alert('falha ao publicar comentario! ' + (e?.response?.data?.error || ''))
+            return false
+        }
+    }
+
+    function getLikeImg() {
+        const liked = postLikes.indexOf(loggedUser.id)
+        return liked === -1 ? likeImg
+        : likedImg
+    }
+
+    async function changeLike () {
+        try {
+            await postService.likeOrUnlikePost(postId)
+            const liked = postLikes.includes(loggedUser.id)
+            if(!liked){
+                setPostLikes([...postLikes, loggedUser.id])
+            }else{
+                setPostLikes(postLikes.filter((userLike: string) => userLike !== loggedUser.id))
+            }
+        } catch (e: any) {
+            alert('falha alterar curtida! ' + (e?.response?.data?.error || ''))
+        }
+    }
+
     return (
         <div className="post">
             <Link href={`/perfil/${userId}`}>
@@ -66,14 +115,14 @@ const Post = ({
             <div className="postFooter">
                 <div className="actionsPostFooter">
                     <Image
-                        src={likeImg}
+                        src={getLikeImg()}
                         alt="icone curtir"
                         width={20}
                         height={20}
-                        onClick={() => console.log('curtir')}
+                        onClick={changeLike}
                     />
                     <Image
-                        src={commentImg}
+                        src={getCommentImg()}
                         alt="icone comentar"
                         width={18}
                         height={18}
@@ -81,7 +130,7 @@ const Post = ({
                     />
 
                     <span className="quantityLikes">
-                        Curtido por <strong>{likes.length}</strong> pessoas.
+                        Curtido por <strong>{postLikes.length}</strong> pessoas.
                     </span>
                 </div>
 
@@ -94,7 +143,7 @@ const Post = ({
                 </div>
 
                 <div className="commentsPostFooter">
-                    {comments.map((comment: any, index: number) => (
+                    {postComments.map((comment: any, index: number) => (
                         <div className="comment" key={index}>
                             <strong className="userName">{comment.name}</strong>
                             <p className="description">
@@ -105,7 +154,7 @@ const Post = ({
                 </div>
             </div>
 
-            {showCommentContainer && <WriteComment loggedUser={loggedUser}/>}
+            {showCommentContainer && <WriteComment loggedUser={loggedUser} publishComment={publishComment}/>}
         </div>
     )
 }
