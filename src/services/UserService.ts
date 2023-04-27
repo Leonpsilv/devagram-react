@@ -28,7 +28,11 @@ export default class UserService extends HTTPService {
         return this.get(`/search?filter=${searchType}`)
     }
 
-    getLoggedUserInfo() {
+    getProfileData(userId: string | string[] | undefined) {
+        return this.get(`/search?id=${userId}`)
+    }
+
+    getLoggedUserData() {
         return {
             id: localStorage.getItem('userId'),
             name: localStorage.getItem('name'),

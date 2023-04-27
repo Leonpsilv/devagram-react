@@ -3,14 +3,29 @@ import withAuthorization from "@/hoc/withAuthorization"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import ProfileHeader from "@/components/profileHeader"
+import UserService from "@/services/UserService"
+
+const userService = new UserService()
 
 const Profile = ({loggedUser}: any) => {
-   const [user, setUser] = useState({})
+   const [user, setUser] = useState<any>({})
    const router = useRouter()
 
+   async function getProfile(userId: string | string[] | undefined) {
+      try {
+         const {data} = await userService.getProfileData(userId)
+         return data
+      } catch (error) {
+         alert('Falha ao buscar dados do usuário! ')
+      }
+
+   }
    useEffect(() => {
       async function request() {
-         setUser({name: 'Leonardo Pinheiro Guedes'})
+         if(!router.query.id) return
+
+         const profileData = await getProfile(router.query.id)
+         setUser(profileData)
       }
       request()
    }, [router.query.id])
@@ -19,7 +34,7 @@ const Profile = ({loggedUser}: any) => {
     <div className="profilePage">
       <ProfileHeader loggedUser={loggedUser} profileUser={user}/>
       
-      <Feed loggedUser={loggedUser}/>
+      <Feed loggedUser={loggedUser} profileData={user}/>
     </div>
    ) 
 }

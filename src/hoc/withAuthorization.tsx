@@ -21,7 +21,7 @@ const withAuthorization = (Component : React.FC) => {
                 return null
             }
             
-            const loggedUser : typeLoggedUser = userService.getLoggedUserInfo()
+            const loggedUser : typeLoggedUser = userService.getLoggedUserData()
             return (
                 <>
                   <Header loggedUser={loggedUser} />  

@@ -20,17 +20,17 @@ const profileHeader = ({
                 <div className='profileInfos'>
                     <div className='statusContainer'>
                         <div className='status'>
-                            <strong>15</strong>
+                            <strong>{profileUser.posts}</strong>
                             <span>publicações</span>
                         </div>
 
                         <div className='status'>
-                            <strong>120</strong>
+                            <strong>{profileUser.followers}</strong>
                             <span>seguidores</span>
                         </div>
 
                         <div className='status'>
-                            <strong>132</strong>
+                            <strong>{profileUser.following}</strong>
                             <span>seguindo</span>
                         </div>
                     </div>

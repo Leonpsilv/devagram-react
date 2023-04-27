@@ -104,8 +104,8 @@ const Post = ({
         <div className="post">
             <Link href={`/perfil/${userId}`}>
                 <section className="postHeader">
-                    <Avatar src={user.avatar} />
-                    <strong>{user.name}</strong>
+                    <Avatar src={user?.avatar} />
+                    <strong>{user?.name}</strong>
                 </section>
             </Link>
             <div className="postImage">
@@ -135,7 +135,7 @@ const Post = ({
                 </div>
 
                 <div className="descriptionPostFooter">
-                    <strong className="userName">{user.name}</strong>
+                    <strong className="userName">{user?.name}</strong>
                     <p className="description">
                         {descriptionView}
                         {!shortDescription && <span className="showMore" onClick={() => showDescription()}>{moreOrLessMsg}</span>}
