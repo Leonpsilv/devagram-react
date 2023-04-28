@@ -43,7 +43,7 @@ const alternativeHeader = ({
         {rightIcon && (
             <button
                 type='button'
-                className='btnAcaoDireita'
+                className='rightActionBtn'
                 onClick={rightOnClick}
             >
                 {rightIcon}

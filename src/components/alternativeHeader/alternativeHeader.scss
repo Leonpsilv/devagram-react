@@ -10,7 +10,7 @@
         text-align: center;
     }
 
-    .btnAcaoDireita {
+    .rightActionBtn {
         border: none;
         background-color: transparent;
         cursor: pointer;
@@ -19,5 +19,19 @@
         color: $primaryColor;
         font-family: $fontBold;
         font-size: 12px;
+    }
+
+    .alternativeHeaderLeftText{
+        font-size: 12px;
+        color: $gray3;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: $desktopBreakPoint) {
+        .rightActionBtn, .alternativeHeaderLeftText {
+            font-size: 14px;
+        }
     }
 }

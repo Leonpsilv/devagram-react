@@ -20,6 +20,10 @@ export default class UserService extends HTTPService {
         return this.post('/register', data)
     }
 
+    async updateProfile (data: FormData) {
+        return this.put('/user', data)
+    }
+
     isAuthenticate() {
         return localStorage.getItem('token') !== null
     }

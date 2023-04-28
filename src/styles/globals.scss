@@ -95,6 +95,18 @@ body{
   }
 }
 
+.dividingBorder{
+  margin: 0;
+  border: none;
+  background-color: $gray1;
+  height: 1px;
+
+  @media screen and (min-width: $desktopBreakPoint){
+    margin: 0 auto;
+    width: 94%;
+  }
+}
+
 @import '../components/Button/button.scss';
 @import '../components/publicInput/publicInput.scss';
 @import './publicPage.scss';

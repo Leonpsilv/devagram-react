@@ -92,7 +92,7 @@ const profileHeader = ({
                 tittle={profileUser?.name}
                 rightIcon={getRightIcon()}
             />
-            <hr className='profileHeaderBorder'/>
+            <hr className='dividingBorder'/>
 
             <div className='profileStatus'>
                 <Avatar src={profileUser?.avatar} />
