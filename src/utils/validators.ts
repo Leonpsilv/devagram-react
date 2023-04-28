@@ -4,7 +4,7 @@ const regex = {
 }
 
 const nameValidate = (name: string) => {
-    return name?.toString().length < 2 && name?.toString().length != 0;
+    return name?.toString().length >= 2 ? false : true;
 }
   
 const emailValidate = (email: string) => {
@@ -24,7 +24,6 @@ const passwordValidate = (password: string) => {
 }
 
 const confirmPasswordValidate = (password: string, confirm: string) => {
-  console.log(password, confirm)
   if(confirm?.toString().length != 0 &&
     password?.toString().length != 0 &&
     password !== confirm) return true
