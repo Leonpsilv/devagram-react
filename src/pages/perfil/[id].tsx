@@ -13,7 +13,7 @@ const Profile = ({loggedUser}: any) => {
 
    async function getProfile(userId: string | string[] | undefined) {
       try {
-         const {data} = await userService.getProfileData(userId)
+         const {data} = await userService.getProfileData(userId === 'eu' ? loggedUser.id : userId)
          return data
       } catch (error) {
          alert('Falha ao buscar dados do usuário! ')

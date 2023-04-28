@@ -102,7 +102,7 @@ const Post = ({
 
     return (
         <div className="post">
-            <Link href={`/perfil/${userId}`}>
+            <Link href={`/perfil/${userId === loggedUser.id ? 'eu': userId}`}>
                 <section className="postHeader">
                     <Avatar src={user?.avatar} />
                     <strong>{user?.name}</strong>

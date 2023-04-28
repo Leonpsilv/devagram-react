@@ -1,10 +1,13 @@
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import AlternativeHeader from '../alternativeHeader'
-import leftArrowImg from '../../../public/images/leftArrow.svg'
 import Avatar from '../avatar'
 import Button from '../button'
-import { useEffect, useState } from 'react'
 import UserService from '@/services/UserService'
-import { useRouter } from 'next/router'
+
+import leftArrowImg from '../../../public/images/leftArrow.svg'
+import logoutImg from '../../../public/images/logout.svg'
+import Image from 'next/image'
 
 const userService = new UserService()
 
@@ -12,33 +15,42 @@ const profileHeader = ({
     loggedUser,
     profileUser
 }: {
-    loggedUser?:  object,
+    loggedUser?:  any,
     profileUser?: any
 }) => {
     const [followingUser, setFollowingUser] = useState(false)
     const [disabledBtn, setDisabledBtn] = useState(false)
+    const [itsPersonalProfile, setItsPersonalProfile] = useState(false)
     const [followersQuantity, setFollowersQuantity] = useState(0)
 
     const router = useRouter()
 
     useEffect(() => {
         if(!profileUser) return
+        if(profileUser._id === loggedUser?.id) {
+            setItsPersonalProfile(true)
+        }
+
         setFollowingUser(profileUser.followingUser)
         setFollowersQuantity(Number(profileUser.followers))
     }, [profileUser])
 
     function getFollowBtn () {
+        if(itsPersonalProfile) return 'Editar Perfil'
+
         return followingUser ? 'Deixar de seguir' : 'Seguir'
     }
 
     function getFollowBtnClassName () {
-        return followingUser ? 'inverted' : 'primary'
+        return followingUser || itsPersonalProfile ? 'inverted' : 'primary'
     }
 
     async function followOrUnfollowBtn () {
+        if(itsPersonalProfile) return router.push('/perfil/editar')
+        
         try {
             setDisabledBtn(true)
-            await userService.followOrUnfollow(profileUser._id)
+            await userService.followOrUnfollow(profileUser?._id)
             setFollowersQuantity(followingUser
                 ? (followersQuantity - 1)
                 : (followersQuantity + 1))
@@ -54,17 +66,40 @@ const profileHeader = ({
         router.back()
     }
 
+    function getRightIcon () {
+        if(!itsPersonalProfile) return null
+        return (
+            <Image
+                src={logoutImg}
+                alt='icone logout'
+                onClick={logoutBtn}
+                width={23}
+                height={23}
+            />
+        )
+    }
+
+    function logoutBtn () {
+        userService.logout()
+        router.push('/')
+    }
+
     return (
         <div className='profileHeader desktopLarge'>
-            <AlternativeHeader leftIcon={leftArrowImg} leftOnClick={backToPreviousPageBtn} tittle={profileUser.name}/>
+            <AlternativeHeader
+                leftIcon={itsPersonalProfile ? null : leftArrowImg}
+                leftOnClick={backToPreviousPageBtn}
+                tittle={profileUser?.name}
+                rightIcon={getRightIcon()}
+            />
             <hr className='profileHeaderBorder'/>
 
             <div className='profileStatus'>
-                <Avatar src={profileUser.avatar} />
+                <Avatar src={profileUser?.avatar} />
                 <div className='profileInfos'>
                     <div className='statusContainer'>
                         <div className='status'>
-                            <strong>{profileUser.posts}</strong>
+                            <strong>{profileUser?.posts}</strong>
                             <span>publicações</span>
                         </div>
 
@@ -74,11 +109,16 @@ const profileHeader = ({
                         </div>
 
                         <div className='status'>
-                            <strong>{profileUser.following}</strong>
+                            <strong>{profileUser?.following}</strong>
                             <span>seguindo</span>
                         </div>
                     </div>
-                    <Button text={getFollowBtn()} color={getFollowBtnClassName()} onClick={followOrUnfollowBtn} disabled={disabledBtn}/>
+                    <Button 
+                        text={getFollowBtn()}
+                        color={getFollowBtnClassName()}
+                        onClick={followOrUnfollowBtn}
+                        disabled={disabledBtn}
+                    />
                 </div>
             </div>
         </div>

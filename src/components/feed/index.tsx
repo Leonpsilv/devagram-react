@@ -15,6 +15,7 @@ const Feed = ({
 
     useEffect(() => {
         async function asyncFunction() {
+            setPostList([])
             const {data} = await postService.postsLoad(profileData?._id)
             
             const formatedPosts = data.map((post: any) => (

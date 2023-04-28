@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 const userService = new UserService()
 
-const Header = ({loggedUser} : {loggedUser? : object}) => {
+const Header = ({loggedUser} : {loggedUser? : any}) => {
     const [searchResult, setSearchResult] = useState<any[]>([])
     const [search, setSearch] = useState('')
     const router = useRouter()
@@ -37,7 +37,7 @@ const Header = ({loggedUser} : {loggedUser? : object}) => {
     const whenClickSearchResult = (id: string) => {
         setSearch('')
         setSearchResult([])
-        router.push(`/perfil/${id}`)
+        router.push(`/perfil/${id === loggedUser?.id ? 'eu': id}`)
     }
 
     const homeRedirect = () => {

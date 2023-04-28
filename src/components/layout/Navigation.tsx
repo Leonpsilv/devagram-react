@@ -21,7 +21,7 @@ const routeMaps = {
     },
     profile: {
         activeImg: activeUserImg,
-        activeRoutes: ['/perfil/eu', '/perfil/eu/editar'],
+        activeRoutes: ['/perfil/eu', '/perfil/editar'],
         defaultImg: userImg
     }
 }

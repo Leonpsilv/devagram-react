@@ -32,6 +32,14 @@ export default class UserService extends HTTPService {
         return this.put(`/follow?id=${userId}`)
     }
 
+    logout() {
+        localStorage.removeItem("name");
+        localStorage.removeItem("email");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("avatar");
+    }
+
     getProfileData(userId: string | string[] | undefined) {
         return this.get(`/search?id=${userId}`)
     }
