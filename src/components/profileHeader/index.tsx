@@ -30,7 +30,6 @@ const profileHeader = ({
         if(profileUser._id === loggedUser?.id) {
             setItsPersonalProfile(true)
         }
-
         setFollowingUser(profileUser.followingUser)
         setFollowersQuantity(Number(profileUser.followers))
     }, [profileUser])
@@ -54,8 +53,8 @@ const profileHeader = ({
             setFollowersQuantity(followingUser
                 ? (followersQuantity - 1)
                 : (followersQuantity + 1))
-            setFollowingUser(!followingUser)
-            setDisabledBtn(false)
+                setDisabledBtn(false)
+                setFollowingUser(!followingUser)
         } catch (error) {
             setDisabledBtn(false)
             alert('Falha ao realizar ação!')
