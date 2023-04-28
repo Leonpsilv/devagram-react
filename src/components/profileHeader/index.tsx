@@ -4,6 +4,7 @@ import Avatar from '../avatar'
 import Button from '../button'
 import { useEffect, useState } from 'react'
 import UserService from '@/services/UserService'
+import { useRouter } from 'next/router'
 
 const userService = new UserService()
 
@@ -17,6 +18,9 @@ const profileHeader = ({
     const [followingUser, setFollowingUser] = useState(false)
     const [disabledBtn, setDisabledBtn] = useState(false)
     const [followersQuantity, setFollowersQuantity] = useState(0)
+
+    const router = useRouter()
+
     useEffect(() => {
         if(!profileUser) return
         setFollowingUser(profileUser.followingUser)
@@ -46,9 +50,13 @@ const profileHeader = ({
         }
     }
 
+    function backToPreviousPageBtn () {
+        router.back()
+    }
+
     return (
         <div className='profileHeader desktopLarge'>
-            <AlternativeHeader leftIcon={leftArrowImg} tittle={profileUser.name}/>
+            <AlternativeHeader leftIcon={leftArrowImg} leftOnClick={backToPreviousPageBtn} tittle={profileUser.name}/>
             <hr className='profileHeaderBorder'/>
 
             <div className='profileStatus'>
