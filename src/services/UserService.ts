@@ -28,6 +28,10 @@ export default class UserService extends HTTPService {
         return this.get(`/search?filter=${searchType}`)
     }
 
+    followOrUnfollow(userId: string){
+        return this.put(`/follow?id=${userId}`)
+    }
+
     getProfileData(userId: string | string[] | undefined) {
         return this.get(`/search?id=${userId}`)
     }
