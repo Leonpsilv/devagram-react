@@ -11,7 +11,7 @@ import Image from 'next/image'
 
 const userService = new UserService()
 
-const profileHeader = ({
+const ProfileHeader = ({
     loggedUser,
     profileUser
 }: {
@@ -124,4 +124,4 @@ const profileHeader = ({
     )
 }
 
-export default profileHeader
+export default ProfileHeader

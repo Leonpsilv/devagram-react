@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const alternativeHeader = ({
+const AlternativeHeader = ({
     className = '',
     leftIcon,
     leftText,
@@ -53,4 +53,4 @@ const alternativeHeader = ({
    )
 }
 
-export default alternativeHeader
+export default AlternativeHeader
