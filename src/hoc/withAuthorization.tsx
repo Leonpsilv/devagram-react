@@ -20,7 +20,7 @@ function WithAuthorization(Component: React.FC) {
         if (typeof window !== 'undefined') {
             if (!userService.isAuthenticate()) {
                 router.replace('/')
-                return null
+                return <></>
             }
 
             const loggedUser: typeLoggedUser = userService.getLoggedUserData()
@@ -34,7 +34,7 @@ function WithAuthorization(Component: React.FC) {
             )
         }
 
-        return null
+        return <></>
     }
 }
 
