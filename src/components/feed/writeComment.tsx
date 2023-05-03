@@ -35,7 +35,7 @@ const WriteComment = ({
     return (
         <div className="writeComment">
             <Avatar
-                src={loggedUser?.src}
+                src={loggedUser?.avatar}
             />
             <textarea
                 rows={rows}
