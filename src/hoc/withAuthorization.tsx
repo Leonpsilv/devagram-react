@@ -1,7 +1,9 @@
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import Loading from "@/components/loading"
 import UserService from "@/services/UserService"
 import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 
 const userService = new UserService()
 
@@ -15,6 +17,7 @@ type typeLoggedUser = {
 const WithAuthorization = (Component : React.FC) => {
     return (props?: any) => {
         const router = useRouter()
+
         if(typeof window !== 'undefined') {
             if(!userService.isAuthenticate()){
                 router.replace('/')
@@ -24,7 +27,8 @@ const WithAuthorization = (Component : React.FC) => {
             const loggedUser : typeLoggedUser = userService.getLoggedUserData()
             return (
                 <>
-                  <Header loggedUser={loggedUser} />  
+                  <Header loggedUser={loggedUser} />
+                  <Loading />
                   <Component loggedUser={loggedUser} {...props} />
                   <Footer loggedUser={loggedUser} />
                 </>

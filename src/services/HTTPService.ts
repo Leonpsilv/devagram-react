@@ -1,4 +1,5 @@
-import axios, { Axios, InternalAxiosRequestConfig } from 'axios';
+import { LoadingHelper } from '@/helpers/LoadingHelper';
+import axios, { Axios, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export default class HTTPService {
     axios: Axios;
@@ -8,12 +9,18 @@ export default class HTTPService {
         })
 
         this.axios.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
+            LoadingHelper.show()
             const token = localStorage.getItem('token')
             if(token) {
                 config.headers.Authorization = 'Bearer ' + token
             }
-
+            
             return config
+        })
+
+        this.axios.interceptors.response.use((response) => {
+            LoadingHelper.hidden()
+            return response
         })
     }
 
