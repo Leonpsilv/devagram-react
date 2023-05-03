@@ -21,17 +21,7 @@ const UploadImage = ({
         whenSetReference(inputReference.current)
     }, [inputReference?.current])
 
-    function openFileSelector() {
-        if(inputReference === null) return
-
-        inputReference?.current?.click();
-    }
-
-    const whenImageChanges = () => {
-        if (!inputReference.current?.files?.length) return
-
-        const file = inputReference!.current!.files![0]
-
+    function getImageUrlAndSetState (file: File) {
         const fileReader = new FileReader()
         fileReader.readAsDataURL(file)
         fileReader.onloadend = () => {
@@ -42,10 +32,34 @@ const UploadImage = ({
         }
     }
 
+    function openFileSelector () {
+        if(inputReference === null) return
+
+        inputReference?.current?.click();
+    }
+
+    function whenImageChanges () {
+        if (!inputReference.current?.files?.length)
+            return
+
+        const file = inputReference!.current!.files![0]
+        getImageUrlAndSetState(file)
+    }
+
+    function whenDropImage (e: any) {
+        e.preventDefault()
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const file = e.dataTransfer.files[0]
+            getImageUrlAndSetState(file)
+        }
+    }
+
     return (
         <div
             className={`uploadImageContainer ${className}`}
             onClick={openFileSelector}
+            onDragOver={(e: any) => e.preventDefault()}
+            onDrop={whenDropImage}
         >
             {imagePreview && (
                 <div className="imagePreviewContainer">
