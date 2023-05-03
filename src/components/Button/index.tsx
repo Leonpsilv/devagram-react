@@ -1,16 +1,12 @@
-const Button = ({
-    type = 'button',
-    text,
-    color = 'primary',
-    disabled = false,
-    onClick
+function Button({
+    type = 'button', text, color = 'primary', disabled = false, onClick
 }: {
     type?: any
     text?: string
     color?: string
     disabled?: boolean
     onClick?: any
-}) => {
+}) {
     return (
         <button
             type={type}
