@@ -16,4 +16,8 @@ export default class PostService extends HTTPService {
     async likeOrUnlikePost(postId: string){
         return this.put(`/like?id=${postId}`)
     }
+
+    async newPost(payload: FormData) {
+        return this.post('/post', payload)
+    }
 }

@@ -6,14 +6,20 @@ import withAuthorization from "@/hoc/withAuthorization"
 import newPostImg from "../../../public/images/newPost.svg"
 import leftArrowImg from "../../../public/images/leftArrow.svg"
 import Button from "@/components/button"
+import { useRouter } from "next/router"
+import PostService from "@/services/PostService"
+
+const postService = new PostService()
 
 const newPost = () => {
     const [image, setImage] = useState<any>()
     const [inputImage, setInputImage] = useState<any>()
     const [currentStep, setCurrentStep] = useState<any>(1)
     const [description, setDescription] = useState('')
+    const [submitting, setSubmitting] = useState(false)
 
     const isFirstStep = () => currentStep === 1
+    const router = useRouter()
     
 
     function getLeftText () {
@@ -41,7 +47,12 @@ const newPost = () => {
     }
 
     function onClickRight () {
-        setCurrentStep(2)
+        if(submitting) return
+        if(currentStep === 1) {
+            setCurrentStep(2)
+            return
+        }
+        postNewPost()
     }
 
     function getHeaderClassName () {
@@ -50,6 +61,25 @@ const newPost = () => {
         }
 
         return 'secondStepHeader'
+    }
+
+    async function postNewPost () {
+        try {
+            if(!image || !description) return
+            setSubmitting(true)
+            
+            const payload = new FormData()
+            payload.append('file', image['file'])
+            payload.append('description', description)
+
+            await postService.newPost(payload)
+
+            setSubmitting(false)
+            return router.push('/')
+        } catch (error) {
+            setSubmitting(false)
+            alert('Falha ao publicar postagem!')   
+        }
     }
 
     return (
