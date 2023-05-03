@@ -31,7 +31,7 @@ const ProfileHeader = ({
             setItsPersonalProfile(true)
         }
         setFollowingUser(profileUser.followingUser)
-        setFollowersQuantity(Number(profileUser.followers))
+        setFollowersQuantity(profileUser.followers)
     }, [profileUser])
 
     function getFollowBtn () {
