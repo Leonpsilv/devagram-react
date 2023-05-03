@@ -42,7 +42,7 @@ const Post = ({
             setShortDescription(false)
         }
         setMoreOrLessMsg('mais')
-    }, [])
+    }, [cutDescription, description])
 
     function showDescription () {
         if(!showMoreToggle){

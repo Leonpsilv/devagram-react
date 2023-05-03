@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
-import withAuthorization from "@/hoc/withAuthorization"
+import WithAuthorization from "@/hoc/withAuthorization"
 import AlternativeHeader from "../../components/alternativeHeader"
 import UploadImage from "@/components/uploadImage"
 
@@ -28,7 +28,7 @@ const EditProfile = ({
             preview : loggedUser.avatar
         })
 
-    }, [])
+    }, [loggedUser])
 
     async function updateProfile () {
         try {
@@ -118,4 +118,4 @@ const EditProfile = ({
     )
 }
 
-export default withAuthorization(EditProfile)
+export default WithAuthorization(EditProfile)

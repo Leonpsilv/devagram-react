@@ -12,7 +12,7 @@ type typeLoggedUser = {
     email: string | null
 }
 
-const withAuthorization = (Component : React.FC) => {
+const WithAuthorization = (Component : React.FC) => {
     return (props?: any) => {
         if(typeof window !== 'undefined') {
             const router = useRouter()
@@ -35,4 +35,4 @@ const withAuthorization = (Component : React.FC) => {
     }
 }
 
-export default withAuthorization
+export default WithAuthorization

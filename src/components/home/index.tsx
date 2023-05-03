@@ -1,4 +1,4 @@
-import withAuthorization from "@/hoc/withAuthorization"
+import WithAuthorization from "@/hoc/withAuthorization"
 import Feed from "../feed"
 
 
@@ -8,4 +8,4 @@ const Home = ({loggedUser}: { loggedUser?:  object}) => {
     )
 }
 
-export default withAuthorization(Home)
+export default WithAuthorization(Home)

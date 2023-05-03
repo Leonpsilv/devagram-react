@@ -1,7 +1,7 @@
 import { useState } from "react"
 import AlternativeHeader from "@/components/alternativeHeader"
 import UploadImage from "@/components/uploadImage"
-import withAuthorization from "@/hoc/withAuthorization"
+import WithAuthorization from "@/hoc/withAuthorization"
 
 import newPostImg from "../../../public/images/newPost.svg"
 import leftArrowImg from "../../../public/images/leftArrow.svg"
@@ -138,4 +138,4 @@ const NewPost = () => {
     )
 }
 
-export default withAuthorization(NewPost)
+export default WithAuthorization(NewPost)

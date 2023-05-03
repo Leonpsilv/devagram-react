@@ -1,5 +1,5 @@
 import Feed from "@/components/feed"
-import withAuthorization from "@/hoc/withAuthorization"
+import WithAuthorization from "@/hoc/withAuthorization"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import ProfileHeader from "@/components/profileHeader"
@@ -39,4 +39,4 @@ const Profile = ({loggedUser}: any) => {
    ) 
 }
 
-export default withAuthorization(Profile)
+export default WithAuthorization(Profile)

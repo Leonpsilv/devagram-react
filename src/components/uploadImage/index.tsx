@@ -19,7 +19,7 @@ const UploadImage = ({
         if(!whenSetReference) return
 
         whenSetReference(inputReference.current)
-    }, [inputReference?.current])
+    }, [inputReference?.current, whenSetReference])
 
     function getImageUrlAndSetState (file: File) {
         const fileReader = new FileReader()

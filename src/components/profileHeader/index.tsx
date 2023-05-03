@@ -32,7 +32,7 @@ const ProfileHeader = ({
         }
         setFollowingUser(profileUser.followingUser)
         setFollowersQuantity(profileUser.followers)
-    }, [profileUser])
+    }, [profileUser, loggedUser?.id])
 
     function getFollowBtn () {
         if(itsPersonalProfile) return 'Editar Perfil'
