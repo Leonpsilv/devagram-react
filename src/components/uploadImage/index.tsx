@@ -11,7 +11,7 @@ const UploadImage = ({
     setImage: any
     imagePreview?: string
     imagePreviewClassName?: string
-    whenSetReference: any
+    whenSetReference?: any
 }) => {
     const inputReference = useRef<HTMLInputElement>(null)
 

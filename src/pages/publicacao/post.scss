@@ -1,0 +1,120 @@
+.postPage {
+    background-color: $white;
+
+    .alternativeHeader{
+        &.secondStepHeader{
+            img {
+                cursor: pointer;
+            }
+            
+            h3 {
+                padding-left: 17%;
+            }
+        }
+    }
+
+    .postContentPage{
+        .firstStep {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            .uploadImageContainer{
+                cursor: pointer;
+                text-align: center;
+
+                .imagePreviewContainer {
+                    margin: 30px auto;
+
+                    img {
+                        object-fit: cover;
+                    }
+                    
+                    .postImagePreview{
+                        height: 100px;
+                        width: 100px;
+                    }
+
+                    .postSelectedImagePreview {
+                        height: 250px;
+                        width: 250px;
+                    }
+                }
+            }
+
+            .btn {
+                background-color: $primaryColor2;
+                color: $white;
+                width: 70%;
+                margin: 10px auto;
+                padding: 12px;
+
+                &:hover {
+                    border: none;
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .secondStep {
+            display: flex;
+
+            .uploadImageContainer {
+                .imagePreviewContainer {
+                    width: 80px;
+                    height: 80px;
+                    margin: 16px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            textarea {
+                resize: none;
+                border: none;
+                outline: none;
+                font-size: 12px;
+                font-family: $fontLight;
+                margin-top: 16px;
+                margin-right: 16px;
+                width: 100%;
+                color: $gray2;
+            }
+        }
+    }
+
+    @media screen and (min-width: $desktopBreakPoint) {
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+
+        .postContentPage {
+            .firstStep {
+                .uploadImageContainer{
+                    .imagePreviewContainer {
+                        margin-bottom: 20px;
+                    }
+                }
+                .dragAndDropText {
+                    color: $gray4;
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+            }
+
+            .secondStep {
+                display: flex;
+    
+                .uploadImageContainer {
+                    .imagePreviewContainer {
+                        width: 160px;
+                        height: 160px;
+                    }
+                }
+            }
+        }
+    }
+}
