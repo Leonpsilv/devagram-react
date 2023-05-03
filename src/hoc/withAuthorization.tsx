@@ -14,8 +14,8 @@ type typeLoggedUser = {
 
 const WithAuthorization = (Component : React.FC) => {
     return (props?: any) => {
+        const router = useRouter()
         if(typeof window !== 'undefined') {
-            const router = useRouter()
             if(!userService.isAuthenticate()){
                 router.replace('/')
                 return null
