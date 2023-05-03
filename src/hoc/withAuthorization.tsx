@@ -13,8 +13,9 @@ type typeLoggedUser = {
     email: string | null
 }
 
-function WithAuthorization(Component: React.FC) {
-    return (props?: any) => {
+function WithAuthorization (Component: any) {
+    
+    return function Authorization (props?: any) {
         const router = useRouter()
 
         if (typeof window !== 'undefined') {
