@@ -1,4 +1,4 @@
-function Button({
+export default function Button({
     type = 'button', text, color = 'primary', disabled = false, onClick
 }: {
     type?: any
@@ -18,5 +18,3 @@ function Button({
         </button>
     )
 }
-
-export default Button
