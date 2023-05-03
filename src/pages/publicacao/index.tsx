@@ -11,7 +11,7 @@ import PostService from "@/services/PostService"
 
 const postService = new PostService()
 
-const newPost = () => {
+const NewPost = () => {
     const [image, setImage] = useState<any>()
     const [inputImage, setInputImage] = useState<any>()
     const [currentStep, setCurrentStep] = useState<any>(1)
@@ -138,4 +138,4 @@ const newPost = () => {
     )
 }
 
-export default withAuthorization(newPost)
+export default withAuthorization(NewPost)
