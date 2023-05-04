@@ -7,9 +7,9 @@ import envelopeImg from '../../../public/images/envelope.svg'
 import logoImg from '../../../public/images/logo.svg'
 
 import PublicInput from "../publicInput";
-import PrimaryOrInvertedBtn from "../button";
 import {emailValidate} from '../../utils/validators';
 import UserService from "../../services/UserService";
+import PrimaryOrInvertedBtn from "../button";
 
 const userService = new UserService()
 
