@@ -5,7 +5,7 @@ import WithAuthorization from "@/hoc/withAuthorization"
 
 import newPostImg from "../../../public/images/newPost.svg"
 import leftArrowImg from "../../../public/images/leftArrow.svg"
-import PrimaryOrInvertedBtn from "@/components/button"
+import PrimaryOrInvertedBtn from "@/components/primaryOrInvertedBtn"
 import { useRouter } from "next/router"
 import PostService from "@/services/PostService"
 

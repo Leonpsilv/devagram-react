@@ -9,7 +9,7 @@ import userImg from '../../../public/images/activeUser.svg';
 import avatarImg from '../../../public/images/avatar.svg';
 
 import PublicInput from '@/components/publicInput';
-import PrimaryOrInvertedBtn from '@/components/button';
+import PrimaryOrInvertedBtn from '@/components/primaryOrInvertedBtn';
 import UploadImage from "@/components/uploadImage";
 import {nameValidate, emailValidate, passwordValidate, confirmPasswordValidate} from '../../utils/validators';
 import UserService from "../../services/UserService";

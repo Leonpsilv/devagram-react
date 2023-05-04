@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AlternativeHeader from '../alternativeHeader'
 import Avatar from '../avatar'
-import PrimaryOrInvertedBtn from '../button'
+import PrimaryOrInvertedBtn from '../primaryOrInvertedBtn'
 import UserService from '@/services/UserService'
 
 import leftArrowImg from '../../../public/images/leftArrow.svg'
