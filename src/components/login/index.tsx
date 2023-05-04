@@ -7,7 +7,7 @@ import envelopeImg from '../../../public/images/envelope.svg'
 import logoImg from '../../../public/images/logo.svg'
 
 import PublicInput from "../publicInput";
-import Button from "../button";
+import PrimaryOrInvertedBtn from "../button";
 import {emailValidate} from '../../utils/validators';
 import UserService from "../../services/UserService";
 
@@ -80,7 +80,12 @@ export default function Login({ afterAuthenticate } : {afterAuthenticate: any}) 
                         whenValueChanges={(e: any) => {setPassword(e.target?.value)}}
                     />
 
-                    <Button type={'submit'} text={"Login"} disabled={formValidate() || submitting} onClick={undefined} />
+                    <PrimaryOrInvertedBtn
+                        type={'submit'}
+                        text={"Login"}
+                        disabled={formValidate() || submitting}
+                        onClick={undefined}
+                    />
                 </form>
 
                 <div className="publicPageBaseboard">

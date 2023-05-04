@@ -1,4 +1,4 @@
-export default function Button({
+export default function PrimaryOrInvertedBtn({
     type = 'button', text, color = 'primary', disabled = false, onClick
 }: {
     type?: any

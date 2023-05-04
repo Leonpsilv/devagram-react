@@ -5,7 +5,7 @@ import WithAuthorization from "@/hoc/withAuthorization"
 
 import newPostImg from "../../../public/images/newPost.svg"
 import leftArrowImg from "../../../public/images/leftArrow.svg"
-import Button from "@/components/button"
+import PrimaryOrInvertedBtn from "@/components/button"
 import { useRouter } from "next/router"
 import PostService from "@/services/PostService"
 
@@ -107,7 +107,7 @@ const NewPost = () => {
 
                     <span className="dragAndDropText desktop">Arraste sua foto para cá!</span>
 
-                    <Button
+                    <PrimaryOrInvertedBtn
                         text="Selecionar uma imagem"
                         onClick={() => inputImage?.click()}
                     />

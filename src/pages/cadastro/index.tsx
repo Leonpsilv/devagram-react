@@ -9,7 +9,7 @@ import userImg from '../../../public/images/activeUser.svg';
 import avatarImg from '../../../public/images/avatar.svg';
 
 import PublicInput from '@/components/publicInput';
-import Button from '@/components/button';
+import PrimaryOrInvertedBtn from '@/components/button';
 import UploadImage from "@/components/uploadImage";
 import {nameValidate, emailValidate, passwordValidate, confirmPasswordValidate} from '../../utils/validators';
 import UserService from "../../services/UserService";
@@ -129,7 +129,7 @@ export default function Register() {
                         whenValueChanges={(e: any) => {setPasswordConfirm(e.target?.value)}}
                     />
 
-                    <Button
+                    <PrimaryOrInvertedBtn
                         type={'submit'}
                         text={"Cadastrar"}
                         disabled={formValidate() || submitting}

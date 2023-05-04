@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AlternativeHeader from '../alternativeHeader'
 import Avatar from '../avatar'
-import Button from '../button'
+import PrimaryOrInvertedBtn from '../button'
 import UserService from '@/services/UserService'
 
 import leftArrowImg from '../../../public/images/leftArrow.svg'
@@ -112,7 +112,7 @@ const ProfileHeader = ({
                             <span>seguindo</span>
                         </div>
                     </div>
-                    <Button 
+                    <PrimaryOrInvertedBtn 
                         text={getFollowBtn()}
                         color={getFollowBtnClassName()}
                         onClick={followOrUnfollowBtn}
