@@ -1,6 +1,6 @@
 # Devagram
 
-Projeto desenvolvimento para apresentação do react.js e next na formação Devaria 2022.
+Projeto desenvolvido para apresentação do react.js e next na formação Devaria 2022. [Clique aqui](https://github.com/Leonpsilv/node-next-devagram) para acessar o repositório da API desta aplicação.
 
 ### Tenologias Utilizadas
 
